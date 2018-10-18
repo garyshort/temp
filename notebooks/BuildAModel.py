@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %md ##Authenticate against the blog store
+
+# COMMAND ----------
+
 # Authenticate
 spark.conf.set(
   "fs.azure.account.key.vodafonedemoblob.blob.core.windows.net",
@@ -21,7 +25,7 @@ df = df.withColumn("NumberOfSupportCalls", df["NumberOfSupportCalls"].cast(Integ
 df = df.withColumn("FailedConnections", df["FailedConnections"].cast(IntegerType()))
 
 df = df.drop("Email")
-#display(df)
+display(df)
 df.dtypes
 
 # COMMAND ----------
