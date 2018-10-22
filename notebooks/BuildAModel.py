@@ -3,12 +3,10 @@
 
 # COMMAND ----------
 
-# Authenticate
-spark.conf.set(
-  "fs.azure.account.key.vodafonedemoblob.blob.core.windows.net",
-  "gReyIPdEV1hhCIOfJgGa9h1H6p9fddpnxUf6GscgVpemV/SC7m8KFXca61x4MV9V2eyxUmHWL76ti6F3zWlaNA==")
-
-
+# Authenticate using Azure Key Vault
+store = "fs.azure.account.key.vodafonedemoblob.blob.core.windows.net"
+key = dbutils.secrets.get(scope="blogstore", key = "ConfigurationKey")
+spark.conf.set(store, key)
 
 # COMMAND ----------
 
@@ -25,6 +23,7 @@ df = df.withColumn("NumberOfSupportCalls", df["NumberOfSupportCalls"].cast(Integ
 df = df.withColumn("FailedConnections", df["FailedConnections"].cast(IntegerType()))
 
 df = df.drop("Email")
+df.map(very_complicated_tranform_row_wise())
 display(df)
 df.dtypes
 
