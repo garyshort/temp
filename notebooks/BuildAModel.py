@@ -23,7 +23,6 @@ df = df.withColumn("NumberOfSupportCalls", df["NumberOfSupportCalls"].cast(Integ
 df = df.withColumn("FailedConnections", df["FailedConnections"].cast(IntegerType()))
 
 df = df.drop("Email")
-df.map(very_complicated_tranform_row_wise())
 display(df)
 df.dtypes
 
