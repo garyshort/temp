@@ -24,7 +24,6 @@ df = df.withColumn("FailedConnections", df["FailedConnections"].cast(IntegerType
 
 df = df.drop("Email")
 display(df)
-df.dtypes
 
 # COMMAND ----------
 
